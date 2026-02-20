@@ -147,7 +147,7 @@ module.exports.downloadPodcastEpisode = (podcastEpisodeDownload) => {
     /** @type {import('../libs/fluentFfmpeg/index').FfmpegCommand} */
     const ffmpeg = Ffmpeg(response.data)
     ffmpeg.addOption('-loglevel debug') // Debug logs printed on error
-    ffmpeg.outputOptions('-c:a', 'mp3', '-map', '0:a', '-metadata', 'podcast=1', '-af', 'silenceremove=stop_periods=-1:stop_duration=0.15:stop_threshold=-42dB')
+    ffmpeg.outputOptions('-c:a', 'libopus', '-b:a', '96k', '-map', '0:a', '-metadata', 'podcast=1', '-af', 'silenceremove=stop_periods=-1:stop_duration=0.15:stop_threshold=-42dB')
 
     /** @type {import('../models/Podcast')} */
     const podcast = podcastEpisodeDownload.libraryItem.media
